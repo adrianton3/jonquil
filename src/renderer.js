@@ -97,7 +97,7 @@
 		blobContainer.position.y = -position.y
 	}
 
-	Object.assign(window.plant, {
+	Object.assign(window.joq, {
 		renderer: {
 			init,
 			draw,
