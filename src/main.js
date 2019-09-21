@@ -22,12 +22,29 @@
 		})
     }
 
-    function setupInteraction (canvas, plant) {
+    function setupInteraction (canvas, renderer, plant) {
+        let sign = -1.
+        let factor = 0.
+
         canvas.addEventListener('click', (event) => {
             event.preventDefault()
 
             plant.bareMode = !plant.bareMode
+            sign = -sign
         })
+
+        return {
+            tick () {
+                factor += sign * .007
+                factor = factor < 0 ? 0 : factor > 1 ? 1 : factor
+
+                renderer.setBackground(
+                    (1 - factor) * 255 + factor * 190,
+                    (1 - factor) * 255 + factor * 80,
+                    (1 - factor) * 255 + factor * 110,
+                )
+            }
+        }
     }
 
     function setup ({ images }) {
@@ -44,18 +61,20 @@
 
         plant.add(trunk)
 
-        setupInteraction(canvas, plant)
+        const interaction = setupInteraction(canvas, renderer, plant)
 
-        return { images, blobbery, plant, trunk }
+        return { images, blobbery, plant, trunk, interaction }
     }
 
-    function loop ({ plant, blobbery, trunk }) {
+    function loop ({ plant, blobbery, trunk, interaction }) {
 		let timePrevious = performance.now()
 
 		function step (timeNow) {
             const delta = (timeNow - timePrevious) * .001
             plant.tick(delta)
             blobbery.tick(delta)
+
+            interaction.tick(delta)
 
 			timePrevious = timeNow
 
