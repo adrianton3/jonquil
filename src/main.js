@@ -26,12 +26,15 @@
         let sign = -1.
         let factor = 0.
 
-        canvas.addEventListener('click', (event) => {
+        const onInteraction = (event) => {
             event.preventDefault()
 
             plant.bareMode = !plant.bareMode
             sign = -sign
-        })
+        }
+
+        canvas.addEventListener('mousedown', onInteraction)
+        canvas.addEventListener('touchstart', onInteraction)
 
         return {
             tick () {
