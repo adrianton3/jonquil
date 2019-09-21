@@ -38,7 +38,7 @@
         return this
     }
 
-    Object.assign(window.plant, {
+    Object.assign(window.joq, {
         Vec2,
     })
 })()

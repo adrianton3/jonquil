@@ -9,7 +9,7 @@
         Plant,
         Trunk,
         Vec2,
-    } = plant
+    } = window.joq
 
     function setupCamera (canvas, renderer) {
 		let scale = 1.

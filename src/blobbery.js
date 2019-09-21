@@ -46,7 +46,7 @@
         return this.blobs[image]
     }
 
-    Object.assign(window.plant, {
+    Object.assign(window.joq, {
         Blobbery,
     })
 })()

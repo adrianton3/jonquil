@@ -20,7 +20,7 @@
         },
     }
 
-    Object.assign(window.plant, {
+    Object.assign(window.joq, {
 		imageDefinitions,
 	})
 })()

@@ -1,7 +1,7 @@
 (() => {
     'use strict'
 
-    const { Vec2 } = plant
+    const { Vec2 } = window.joq
 
     const step = 9.
 
@@ -54,7 +54,7 @@
         }
     }
 
-    Object.assign(window.plant, {
+    Object.assign(window.joq, {
         Branch,
     })
 })()
