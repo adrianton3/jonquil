@@ -95,14 +95,19 @@
 	function setPosition (position) {
 		blobContainer.position.x = -position.x
 		blobContainer.position.y = -position.y
-	}
+    }
+
+    function setBackground (red, green, blue) {
+        renderer.backgroundColor = red << 16 | green << 8 | blue
+    }
 
 	Object.assign(window.joq, {
 		renderer: {
 			init,
 			draw,
 			setScale,
-			setPosition,
+            setPosition,
+            setBackground,
 		},
 	})
 })()
