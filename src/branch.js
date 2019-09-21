@@ -46,7 +46,8 @@
 
             const random = Math.random()
 
-            const image = random > .7 ? 'leaf'
+            const image = plant.bareMode ? 'needle'
+                : random > .7 ? 'leaf'
                 : random > .6 ? 'flower'
                 : 'needle'
 

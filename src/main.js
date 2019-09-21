@@ -15,11 +15,19 @@
 		let scale = 1.
 
 		canvas.addEventListener('wheel', (event) => {
+            event.preventDefault()
+
 			scale = Math.max(.25, Math.min(1.5, scale - event.deltaY * .0005))
             renderer.setScale(scale)
-
-            event.preventDefault()
 		})
+    }
+
+    function setupInteraction (canvas, plant) {
+        canvas.addEventListener('click', (event) => {
+            event.preventDefault()
+
+            plant.bareMode = !plant.bareMode
+        })
     }
 
     function setup ({ images }) {
@@ -35,6 +43,8 @@
         trunk.rotationIncrement = (Math.random() * .01 + .01) * (Math.random() < .5 ? 1 : -1)
 
         plant.add(trunk)
+
+        setupInteraction(canvas, plant)
 
         return { images, blobbery, plant, trunk }
     }

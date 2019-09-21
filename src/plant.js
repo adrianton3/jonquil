@@ -4,6 +4,8 @@
     function Plant (blobbery) {
         this.blobbery = blobbery
         this.threads = []
+
+        this.bareMode = false
     }
 
     Plant.prototype.tick = function () {

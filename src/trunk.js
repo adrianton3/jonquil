@@ -50,7 +50,10 @@
         } else {
             this.cooldown.rotation = Math.floor(Math.random() * 15 + 30)
 
-            const rotationIncrementTarget = -Math.sign(this.rotationIncrement) * Math.random() * .03 + .015
+            const rotationIncrementTarget = plant.bareMode
+                ? -Math.sign(this.rotationIncrement) * Math.random() * .03 + .03
+                : -Math.sign(this.rotationIncrement) * Math.random() * .03 + .015
+
             this.rotationIncrementCount = Math.floor(Math.random() * 15 + 5)
             this.rotationIncrementIncrement = (rotationIncrementTarget - this.rotationIncrement) / this.rotationIncrementCount
         }
