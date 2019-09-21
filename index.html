@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+    <title>jonquil</title>
+    <style>
+        body {
+            background-color: #FCFCFC;
+            text-align: center;
+        }
+
+        .desc {
+            font-size: small;
+            font-family: sans-serif;
+            color: #303030;
+        }
+
+        canvas {
+            border: dashed 1px #606060;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="768" height="768"></canvas>
+    <br>
+    <p class="desc">
+        Inspired by
+        Assembly 2004 invitation (Moppi Productions) and
+        Masagin (farbrausch &amp; neuro)
+    </p>
+
+    <script src="lib/pixi.js"></script>
+
+    <script>window.plant = {}</script>
+
+    <script src="src/image-definitions.js"></script>
+    <script src="src/image-loader.js"></script>
+    <script src="src/vec2.js"></script>
+    <script src="src/renderer.js"></script>
+
+    <script src="src/branch.js"></script>
+    <script src="src/trunk.js"></script>
+
+    <script src="src/plant.js"></script>
+    <script src="src/blobbery.js"></script>
+
+    <script src="src/main.js"></script>
+</body>
+</html>
