@@ -30,7 +30,7 @@
         this.rotationIncrement *= 1.02
 
         if (this.scale > .1) {
-            this.scale -= .005
+            this.scale -= .01
         } else {
             this.scale = .1
             this.alive = false

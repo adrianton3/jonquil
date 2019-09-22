@@ -22,7 +22,7 @@
         })
     }
 
-    const ageMax = 110
+    const ageMax = 120
 
     Blobbery.prototype.tick = function () {
         for (const image of Object.keys(this.blobs)) {
