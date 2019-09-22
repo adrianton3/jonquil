@@ -42,9 +42,9 @@
                 factor = factor < 0 ? 0 : factor > 1 ? 1 : factor
 
                 renderer.setBackground(
-                    (1 - factor) * 255 + factor * 190,
-                    (1 - factor) * 255 + factor * 80,
-                    (1 - factor) * 255 + factor * 110,
+                    (1 - factor) * 255 + factor * 170,
+                    (1 - factor) * 255 + factor * 160,
+                    (1 - factor) * 255 + factor * 180,
                 )
             }
         }
@@ -89,6 +89,7 @@
             renderer.draw('leaf0', blobbery.getBlobs('leaf0'))
             renderer.draw('leaf1', blobbery.getBlobs('leaf1'))
             renderer.draw('flower', blobbery.getBlobs('flower'))
+            renderer.draw('spikes', blobbery.getBlobs('spikes'))
 
 			requestAnimationFrame(step)
 		}
