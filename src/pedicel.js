@@ -34,7 +34,13 @@
         } else {
             this.scale = .1
             this.alive = false
-            blobbery.add('flower', this.position, this.rotation, Math.random() * .5 + .5)
+            blobbery.add(
+                plant.bareMode ? 'spikes' : 'flower',
+                this.position,
+                this.rotation,
+                Math.random() * .5 + .5
+            )
+
             return
         }
 
@@ -42,7 +48,12 @@
             this.cooldown--
         } else {
             this.alive = false
-            blobbery.add('flower', this.position, this.rotation, Math.random() * .5 + .5)
+            blobbery.add(
+                plant.bareMode ? 'spikes' : 'flower',
+                this.position,
+                this.rotation,
+                Math.random() * .5 + .5
+            )
         }
     }
 

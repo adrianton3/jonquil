@@ -26,6 +26,10 @@
             url: 'art/flower.png',
             anchor: { x: .5, y: .5 },
         },
+        'spikes': {
+            url: 'art/spikes.png',
+            anchor: { x: .5, y: .5 },
+        },
     }
 
     Object.assign(window.joq, {
