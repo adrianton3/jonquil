@@ -34,7 +34,7 @@
         ))
 
         this.pastPositions.push(this.position.clone())
-        if (this.pastPositions.length > 35) {
+        if (this.pastPositions.length > 50) {
             this.pastPositions.shift()
         }
 

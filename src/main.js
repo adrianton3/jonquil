@@ -84,9 +84,11 @@
             renderer.setPosition(trunk.getPastPosition())
 
             renderer.draw('body', blobbery.getBlobs('body'))
-            renderer.draw('leaf', blobbery.getBlobs('leaf'))
+            renderer.draw('needle0', blobbery.getBlobs('needle0'))
+            renderer.draw('needle1', blobbery.getBlobs('needle1'))
+            renderer.draw('leaf0', blobbery.getBlobs('leaf0'))
+            renderer.draw('leaf1', blobbery.getBlobs('leaf1'))
             renderer.draw('flower', blobbery.getBlobs('flower'))
-            renderer.draw('needle', blobbery.getBlobs('needle'))
 
 			requestAnimationFrame(step)
 		}
