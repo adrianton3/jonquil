@@ -44,18 +44,30 @@
         } else {
             this.cooldown = Math.floor(Math.random() * 6 + 6)
 
-            if (plant.bareMode) {
-                blobbery.add('needle', this.position, this.rotation, Math.random() * .5 + .5)
-            } else {
-                const random = Math.random()
+            const random = Math.random()
 
+            if (plant.bareMode) {
                 if (random > .9) {
+                    const branch = new Branch(this.position, this.rotation, -this.rotationIncrement * 1.3)
+                    branch.scale = this.scale * .6
+
+                    plant.add(branch)
+                } else {
+                    blobbery.add('needle', this.position, this.rotation, Math.random() * .5 + .5)
+                }
+            } else {
+                if (random > .9) {
+                    const branch = new Branch(this.position, this.rotation, -this.rotationIncrement * 1.3)
+                    branch.scale = this.scale * .7
+
+                    plant.add(branch)
+                } else if (random > .8) {
                     const pedicel = new Pedicel(this.position, this.rotation, -this.rotationIncrement * 1.3)
                     pedicel.scale = this.scale * .7
 
                     plant.add(pedicel)
                 } else {
-                    const image = random > .6 ? 'leaf' : 'needle'
+                    const image = random > .5 ? 'leaf' : 'needle'
                     blobbery.add(image, this.position, this.rotation, Math.random() * .5 + .5)
                 }
             }

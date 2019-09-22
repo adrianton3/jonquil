@@ -51,10 +51,10 @@
             this.cooldown.rotation = Math.floor(Math.random() * 15 + 30)
 
             const rotationIncrementTarget = plant.bareMode
-                ? -Math.sign(this.rotationIncrement) * Math.random() * .03 + .03
+                ? -Math.sign(this.rotationIncrement) * Math.random() * .02 + .01
                 : -Math.sign(this.rotationIncrement) * Math.random() * .03 + .015
 
-            this.rotationIncrementCount = Math.floor(Math.random() * 15 + 5)
+            this.rotationIncrementCount = Math.floor(Math.random() * 12 + 4)
             this.rotationIncrementIncrement = (rotationIncrementTarget - this.rotationIncrement) / this.rotationIncrementCount
         }
 
@@ -66,7 +66,7 @@
             const branch = new Branch(
                 this.position,
                 this.rotation,
-                -Math.sign(this.rotationIncrement) * (Math.random() * .02 + .02)
+                -Math.sign(this.rotationIncrement) * (Math.random() * .02 + .02) * (plant.bareMode ? 1.2 : 1.)
             )
 
             plant.add(branch)
