@@ -11,8 +11,8 @@
         Vec2,
     } = window.joq
 
-    function setupCamera (canvas, renderer) {
-		let scale = 1.
+    function setupCamera (canvas, renderer, startScale = 1.) {
+		let scale = startScale
 
 		canvas.addEventListener('wheel', (event) => {
             event.preventDefault()
@@ -50,12 +50,39 @@
         }
     }
 
+    function getDimensions () {
+        const viewportSize = {
+            width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+            height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+        }
+
+        const sizeActual = Math.min(viewportSize.width, viewportSize.height)
+        const sizeCandidates = [256, 384, 512, 768, 1024, 1280]
+        const sizeIndex = sizeCandidates.findIndex((size) => size > sizeActual)
+        const sizeTarget = sizeCandidates[
+            sizeIndex === -1 ? sizeCandidates[sizeCandidates.length - 1]
+            : sizeIndex === 0 ? 0
+            : sizeIndex - 1
+        ]
+
+        return {
+            size: sizeTarget,
+            scale: sizeTarget / 768.,
+        }
+    }
+
     function setup ({ images }) {
         const canvas = document.getElementById('canvas')
 
-        renderer.init(canvas, images)
+        const dimensions = getDimensions(canvas)
 
-        setupCamera(canvas, renderer)
+        canvas.width = dimensions.size
+        canvas.height = dimensions.size
+
+        renderer.init(canvas, images)
+        renderer.setScale(dimensions.scale)
+
+        setupCamera(canvas, renderer, dimensions.scale)
 
         const blobbery = new Blobbery(images)
         const plant = new Plant(blobbery)
