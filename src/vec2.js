@@ -31,13 +31,6 @@
         return this
     }
 
-    Vec2.prototype.mul = function (that) {
-        this.x *= that.x
-        this.y *= that.y
-
-        return this
-    }
-
     Object.assign(window.joq, {
         Vec2,
     })
