@@ -1,7 +1,7 @@
 (() => {
     'use strict'
 
-    const { Vec2 } = window.joq
+    const { Pedicel, Vec2 } = window.joq
 
     const step = 9.
 
@@ -44,14 +44,21 @@
         } else {
             this.cooldown = Math.floor(Math.random() * 6 + 6)
 
-            const random = Math.random()
+            if (plant.bareMode) {
+                blobbery.add('needle', this.position, this.rotation, Math.random() * .5 + .5)
+            } else {
+                const random = Math.random()
 
-            const image = plant.bareMode ? 'needle'
-                : random > .7 ? 'leaf'
-                : random > .6 ? 'flower'
-                : 'needle'
+                if (random > .9) {
+                    const pedicel = new Pedicel(this.position, this.rotation, -this.rotationIncrement * 1.3)
+                    pedicel.scale = this.scale * .7
 
-            blobbery.add(image, this.position, this.rotation, Math.random() * .5 + .5)
+                    plant.add(pedicel)
+                } else {
+                    const image = random > .6 ? 'leaf' : 'needle'
+                    blobbery.add(image, this.position, this.rotation, Math.random() * .5 + .5)
+                }
+            }
         }
     }
 

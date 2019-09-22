@@ -16,7 +16,7 @@
         },
         'flower': {
             url: 'art/flower.png',
-            anchor: { x: .01, y: .99 },
+            anchor: { x: .5, y: .5 },
         },
     }
 
