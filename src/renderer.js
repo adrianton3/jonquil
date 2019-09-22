@@ -2,16 +2,17 @@
 	'use strict'
 
 	let renderer
-	let stage, blobContainer
+	let stage, panner
 	let images
-	const textures = {}
-	const spritesByImage = {}
+
+    const textures = {}
+    const spritesByImage = {}
+    const containers = {}
 
 	function init (canvas, _images) {
 		const { width, height } = canvas
 
 		images = _images
-		allocate(images)
 
 		renderer = new PIXI.Renderer({
 			width,
@@ -20,29 +21,26 @@
 			backgroundColor: 0xFFFFFF,
 		})
 
-		stage = new PIXI.Container()
+        stage = new PIXI.Container()
+        stage.position.x = width / 2
+        stage.position.y = height / 2
 
-		// blobContainer = new PIXI.ParticleContainer(3000, {
-		// 	scale: true,
-		// 	position: true,
-		// 	rotation: true,
-		// 	uvs: false,
-		// 	alpha: false,
-		// 	tint: false,
-		// })
+		panner = new PIXI.Container()
+        stage.addChild(panner)
 
-		blobContainer = new PIXI.Container()
-
-		stage.position.x = width / 2
-		stage.position.y = height / 2
-
-		stage.addChild(blobContainer)
+        allocate(images)
 	}
 
 	function allocate (images) {
 		for (const image of Object.keys(images)) {
 			textures[image] = PIXI.Texture.from(images[image].image)
-			spritesByImage[image] = []
+            spritesByImage[image] = []
+
+            {
+                const container = new PIXI.Container()
+                containers[image] = container
+                panner.addChild(container)
+            }
 		}
 	}
 
@@ -62,7 +60,7 @@
 		const { anchor } = images[image]
 		sprite.anchor.set(anchor.x, anchor.y)
 
-		blobContainer.addChild(sprite)
+		containers[image].addChild(sprite)
 		spritesByImage[image].push(sprite)
 	}
 
@@ -73,10 +71,13 @@
 			addSprite(image)
 		}
 
-		for (let i = blobs.length; i < sprites.length; i++) {
-			const sprite = sprites.pop()
-			blobContainer.removeChild(sprite)
-		}
+        {
+            const container = containers[image]
+            for (let i = blobs.length; i < sprites.length; i++) {
+                const sprite = sprites.pop()
+                container.removeChild(sprite)
+            }
+        }
 
 		let index = 0
 		for (let i = 0; i < blobs.length; i++) {
@@ -93,8 +94,8 @@
 	}
 
 	function setPosition (position) {
-		blobContainer.position.x = -position.x
-		blobContainer.position.y = -position.y
+		panner.position.x = -position.x
+		panner.position.y = -position.y
     }
 
     function setBackground (red, green, blue) {
